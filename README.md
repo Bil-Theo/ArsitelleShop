@@ -1,34 +1,49 @@
 # ArsitelleShop
 
-1- Telecharger  et installer "node.js".<br>
-2- Telecharger et installer l'application "Expo Go" pour IOS sur AppleStore et PlayStore pour Android.<br>
-Cette application va aider pour l'execution de l'application
+1- Telecharger  et installer "node.js".
+
+
+2- Telecharger et installer l'application "Expo Go" pour IOS sur AppleStore et PlayStore pour Android.
+Cette application va aider pour l'execution de l'application.
+
+
 2- creer un dossier nommez "MaBoutique":<br>
-   &nbsp &nbsp &nbsp &nbsp 2.1 Ouvrer l'inviter de commande (Ou autre terminal) et acceder à "MaBoutique".<br>
+   2.1 Ouvrer l'inviter de commande (Ou autre terminal) et acceder à "MaBoutique".
+
+   
 3- Cloner le projet avec :
 
       git clone "https://github.com/Bil-Theo/ArsitelleShop.git"
-.<br>
-4- Acceder au dossier backend :<br>
-    4.1 taper la commande: 
+
+4- Acceder au dossier backend :
+
+
+4.1 taper la commande: 
     
         node init 
 
-pour configurer le serveur;<br>
-4.2 Sauter toutes les propositions jusqu'à celle >> entry point: (index.js) changer en server.js;<br>
+pour configurer le serveur;
+
+
+4.2 Sauter toutes les propositions jusqu'à celle >> entry point: (index.js) changer en server.js;
+
+
 4.3 Executer les commandes:<br>
     
               npm install -g express
               npm install -g nodemon
               npm install -g cors
               npm install mongoose
+              npm install bcrypt
               nodemon server
 5-  Executee la commande:<br>
 
               npm install -g expo-cli
               
-5.1 ensuite acceder au dossier AristelleBoutique et executer la commande:<br>
+5.1 ensuite acceder au dossier AristelleBoutique et executer la commande:
+
               yarn start
+              
 5.2 Scanner le QRcode 
           -Si vous etes sur IOS scanner avec l'application camdera ou le scanneCode de apple
           -Si vous etes sur Android scanner avec l'application Expo go elle meme 
