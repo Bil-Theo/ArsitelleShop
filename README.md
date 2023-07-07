@@ -13,7 +13,7 @@ Cette application va aider pour l'execution de l'application
               >>npm install -g express<br>
               >>npm install -g nodemon<br>
               >>npm install -g cors<br>
-              >>npm install -g mongoose<br>
+              >>npm install mongoose<br>
               >>nodemon server   (cette commande lance le server)<br>
 5-  Executee la commande:<br>
               >>npm install -g expo-cli<br>
