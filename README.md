@@ -10,6 +10,7 @@ Cette application va aider pour l'execution de l'application
     4.1 taper la commande: << node init >> pour configurer le serveur;<br>
     4.2 Sauter toutes les propositions jusqu'à celle >> entry point: (index.js) changer en server.js;<br>
     4.3 Executer les commandes:<br>
+    
               >>npm install -g express<br>
               >>npm install -g nodemon<br>
               >>npm install -g cors<br>
