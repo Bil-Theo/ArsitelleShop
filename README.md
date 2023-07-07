@@ -12,6 +12,8 @@ Cette application va aider pour l'execution de l'application
     4.3 Executer les commandes:
               >>npm install -g express
               >>npm install -g nodemon
+              >>npm install -g cors
+              >>npm install -g mongoose
               >>nodemon server   (cette commande lance le server)
 5-  Executee la commande:
               >>npm install -g expo-cli
