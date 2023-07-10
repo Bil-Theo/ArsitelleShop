@@ -35,6 +35,7 @@ pour configurer le serveur;
               npm install -g cors
               npm install mongoose
               npm install bcrypt
+              npm install jsonwebtoken
               nodemon server
 5-  Executee la commande:<br>
 
