@@ -1,7 +1,7 @@
 const express = require("express")
 const cors =  require('cors')
-const mongoose = require('mongoose')
-const router = require("./routes/stuff")
+const routeStuff = require("./routes/stuff")
+const routeUser = require('./routes/user')
 
 
 const app = express()
@@ -17,8 +17,7 @@ app.use((req, res, next) => {
 
 app.use(cors())
 
-app.use('/api/stuff', router)
+app.use('/api/stuff', routeStuff)
+app.use('/api/auth', routeUser)
 
-
-
-  module.exports = app
+module.exports = app
