@@ -2,6 +2,7 @@ const express = require("express")
 const cors =  require('cors')
 const routeStuff = require("./routes/stuff")
 const routeUser = require('./routes/user')
+const path = require('path')
 
 
 const app = express()
@@ -19,5 +20,6 @@ app.use(cors())
 
 app.use('/api/stuff', routeStuff)
 app.use('/api/auth', routeUser)
+app.use('/images', express.static(path.join(__dirname, 'images')));
 
 module.exports = app

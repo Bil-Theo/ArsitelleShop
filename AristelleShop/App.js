@@ -1,54 +1,112 @@
 import { StatusBar } from 'expo-status-bar';
 import { useState, useEffect } from 'react';
-import { Text, TouchableOpacity, View, Image } from 'react-native';
+import { Text, TouchableOpacity, View, Image, ImageBackground, TextInput, Button, SafeAreaView } from 'react-native';
 import styles from './assets/style/styles';
-import MyImage from './assets/style/MyImage'
+import {check_num, check_password} from './assets/utilitaires/check';
+import SvgUri from 'react-native-svg-uri';
+import MaterialIcons from 'react-native-vector-icons/MaterialIcons'
+
 
 export default function App() {
 
+  const [password, setPassword] = useState('')
+  const [tel, setTel] = useState('')
+  const [message, setMessage] = useState()
 
-  const [img, setImg] = useState()
-  const [obj, setobj] = useState()
-
-  const createImg = (myImgs)=>{
-    const o = myImgs[0]
-    setobj(new MyImage(o._id, o.description, o.imageUrl, o.price, o.title))
-    //console.log(obj);
-        
+  const changePassword = (inputext)=>{
+    setPassword(inputext);
   }
 
-  const getData = ()=>{ 
-    fetch('http://192.168.8.101:3000/api/stuff')
-    .then((res)=>{
-      return res.json();
-    })
-    .then((data)=>{
-      setImg(data);
-      createImg(img)
-      //console.log(data)
-    })
-    .catch(error => {
-      // Gérer les erreurs de requête réseau ici
-      console.error('Erreur de requête réseau :', error);
-    });
+  const changeTel = (inputext)=>{
+    setTel(inputext)
+  }
+  
+  const validate = ()=>{
+    if(true){
 
+          const user = {'tel': tel, 'password': password}
+          fetch('http://192.168.8.118:3000/api/auth/login', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(user),
+          })
+          .then(response=> response.json())
+          .then(data=>{
+            console.log(data)
+          })
+          .catch(error=>{
+            console.log(error)
+          })
+
+    }
+    else{
+      setMessage('numero ou mot de passe incorrect!')
+    }
   }
 
-  useEffect(()=>{
-    getData()
-  }, [])
+  const inscription = ()=>{
+    console.log("votre inscription reussie")
+  }
+ 
+  const [showPassword, setShowPassword] = useState(false);
+  
+    const toggleShowPassword = () => {
+      setShowPassword(!showPassword);
+    };
 
   return (
-    <View style={styles.container}>
-      {obj && (
-        <View style={styles.contenairImg}>
-          <Image source={{ uri: obj.imgUrl }} style={styles.img} />
-          <Text style={styles.text}>{obj.title}</Text>
+    <SafeAreaView>
+        <View>
+            <SvgUri
+              style = {styles.backImg}
+              source={require('./assets/img/image.svg')}
+            />
+            
+            <Text style = {styles.text}>Login</Text>
+
+            {message&& (<View style = {{justifyContent: 'center', alignItems: 'center'}}><Text style = {{fontFamily: 'Arial',
+                  marginTop: '10%',
+                  position: 'relative', 
+                  color: '#d80000'}}>{message}</Text></View>)}
+
+            <View style = {styles.contenaird}>
+                <MaterialIcons name='phone' size={20} color='#666'/>
+                <TextInput
+                  placeholder='06 883 83 43'
+                  style = {{paddingLeft: '2.5%'}}
+                  keyboardType='numeric'
+                  value={tel}
+                  onChangeText={changeTel}
+                />
+            </View>
+            <View style = {styles.contenaird}>
+                <MaterialIcons name='lock' size={20} color='#666'/>
+                <TextInput
+                  placeholder='Mot de passe'
+                  style = {{paddingLeft: '2.5%'}}
+                  value={password}
+                  secureTextEntry = {showPassword}
+                  onChangeText={changePassword}
+                />
+                          
+                <TouchableOpacity onPress={toggleShowPassword} style={{marginLeft: '55%',}}>
+                  <MaterialIcons
+                    name={showPassword ? 'visibility-off' : 'visibility'}
+                    size={24}
+                    color="gray"
+                  />
+                </TouchableOpacity>
+            </View>
+            <TouchableOpacity style = {styles.button} onPress={validate}>
+                <Text style= {{color: 'white', fontWeight: 'bold'}}>Connexion</Text>
+            </TouchableOpacity>
+            <View style = {{margin: '10%', flexDirection:  'row', justifyContent: 'center', alignItems: 'center'}}>
+                <Text style={{fontWeight: '600'}}>Vous n'avez pas un compte ?  </Text>
+                <TouchableOpacity onPress={inscription}><Text style = {{color: '#10dfee', fontWeight: '700'}}>S'incrire</Text></TouchableOpacity> 
+            </View>   
         </View>
-      )}
-    <TouchableOpacity style = {styles.button} onPress={getData}>
-      <Text>Toucher ici</Text>
-    </TouchableOpacity>
-    </View>
+    </SafeAreaView>
   );
 }
