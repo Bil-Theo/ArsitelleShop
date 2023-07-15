@@ -1,43 +1,70 @@
-const bcrypte = require('bcrypt')
-const mysql = require('mysql')
+const argon2  =  require('argon2')
 const twilio = require('twilio');
+const jwt =  require('jsonwebtoken')
 
 const accountSid = 'AC0b94dd68b332f3483b8f80142c8c2fc8';
 const authToken = '0c7a8540100cc76ca52c61e92068dc1e';
 const client = twilio(accountSid, authToken);
 
+const connection = require('../database')
 
-const connection = mysql.createConnection({
-    host : 'localhost',
-    user: 'root', 
-    password: 'root',
-    database: 'aristoshop'
-})
-//UwAmp\bin\database\mysql-5.7.11
-connection.connect((error)=>{
-    if(error){
-        console.error("Error de connection: "+error.stack)
-        return;
-    }
-    else{
-        console.log("Connexion basse de donnée MySql reussie...");
-    }
-})
+exports.signup = async(req, res, next)=>{
 
-exports.signup = (req, res, next)=>{
+  const user = req.body
+  user.tel = '+242'+user.tel
+
+
+  const hash = await argon2.hash(user.password)
+        connection.query('INSERT INTO utilisateur(id, nom, prenom, adresse, tel, mdps) VALUES(null, ?, ?, ?, ?, ?);', [user.nom, user.prenom, user.adresse, user.tel, hash], (error, results)=>{
+              if(error){
+                  if(error.sqlMessage.includes('tel')){
+                    console.log('Il existe déjà un compte avec ce numéro')
+                    res.status(400).json({message: 'Il existe déjà un compte avec ce numéro de téléphone.'})
+                  }
+                  else{
+                    console.log('Erreur requete');
+                    res.status(500).json({ error: "Erreur de serveur" });
+                  }
+            }
+            else{
+              console.log('requete executer')
+              res.status(201).json({message: 'Utilisateur a été crée avec succès.'})
+            }
+        })
+        
+
+
 
 }
 
-exports.login = (req, res, next) => {
-    connection.query("SELECT * FROM utilisateur;", (error, results) => {
-      if (error) {
+exports.login = async(req, res, next) => {
+
+    
+
+    connection.query("SELECT * FROM utilisateur WHERE tel = ?;", ['+242'+req.body.tel], async (error, results) => {
+      if (error) {  
         res.status(500).json({ error: "Erreur de serveur" });
-      } else if (results.length === 0) {
-        res.status(204).json({ message: "La requête réussie mais n'inclut pas de résultats" });
-      } else {
-        console.log("Vérifier");
-        res.json(results);
+      } 
+      else if (results.length === 0) {
+        res.status(204).json({ message: 'numero ou mot de passe incorrect!' });
       }
+      else {
+            const valid = await argon2.verify(results[0].mdps, req.body.password);
+            if(!valid){
+              const message = JSON.stringify({ 'message': 'numero ou mot de passe incorrect!' })
+              res.status(204).json(message);
+            }
+            else{
+                res.status(200).json({
+                  user: results,
+                  token: jwt.sign(
+                      { userId: results[0].id },
+                      'RANDOM_TOKEN_SECRET',
+                      { expiresIn: '24h' }
+                  )
+              });
+            }
+        }
     });
   };
   
@@ -65,3 +92,12 @@ exports.verify = (req, res, next)=>{
       
 
 }
+
+
+/*{
+  nom: 'BIL',
+  prenom: 'Théo ',
+  adresse: 'Bebd ',
+  tel: '+242068838343',
+  password: 'bilt11'
+}*/

@@ -15,6 +15,7 @@ exports.createThing = (req, res, next)=>{
   }
 
 exports.getThings = (req, res, next) => {
+   
     const stuff = [
       {
         _id: 'oeihfzeoi',

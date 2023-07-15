@@ -10,13 +10,14 @@ const styles = StyleSheet.create({
     },
     
     contenaird: {
-      left: '10%',
+      left: '6%',
       marginTop: '10%',
       position: 'relative',
       flexDirection: 'row',
       borderBottomWidth: 1,
       width: '80%',
       borderColor: '#666',
+      borderRadius: 5,
       paddingBottom: '2%'
      }
     ,
@@ -28,8 +29,7 @@ const styles = StyleSheet.create({
     erreur:{
         color: 'red',
         flex: 1,
-        margin: '5%',  
-        fontSize: '50px',
+        margin: '5%', 
     },
     button: {
       alignItems: 'center',
@@ -41,6 +41,7 @@ const styles = StyleSheet.create({
       width: '80%',
       marginLeft: '10%',
       marginTop: 30,
+      flexDirection: 'row'
     
     },
     textput: {
@@ -61,7 +62,7 @@ const styles = StyleSheet.create({
     },
     text: {
       fontFamily: 'Arial',
-      fontSize: '25',
+      fontSize: 25,
       marginTop: '50%',
       position: 'relative',
       left: 50
@@ -70,7 +71,7 @@ const styles = StyleSheet.create({
       width: '100%',
       height: '1%',
       marginTop: '15%', 
-      marginLeft: '25%', 
+      marginLeft: '20%', 
     }
   })
 
