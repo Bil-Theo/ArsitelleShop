@@ -19,9 +19,9 @@ const styles = StyleSheet.create({
         borderColor: '#666',
         borderRadius: 5,
         paddingBottom: '2%'
-       }
-      ,  modalContainer: {
-    backgroundColor: '#fff',
+       },  
+    modalContainer: {
+    backgroundColor: 'rgba(0, 0, 0, 0.35)',
     padding: 20,
     borderRadius: 10,
     alignItems: 'center',
@@ -30,6 +30,7 @@ const styles = StyleSheet.create({
     fontSize: 16,
     marginBottom: 20,
     textAlign: 'center',
+    color: 'white'
   },
   modalButtonContainer: {
     flexDirection: 'row',

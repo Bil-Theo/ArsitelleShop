@@ -13,22 +13,21 @@ exports.signup = async(req, res, next)=>{
   const user = req.body
   user.tel = '+242'+user.tel
 
+ // console.log(user)
+
 
   const hash = await argon2.hash(user.password)
         connection.query('INSERT INTO utilisateur(id, nom, prenom, adresse, tel, mdps) VALUES(null, ?, ?, ?, ?, ?);', [user.nom, user.prenom, user.adresse, user.tel, hash], (error, results)=>{
               if(error){
                   if(error.sqlMessage.includes('tel')){
-                    console.log('Il existe déjà un compte avec ce numéro')
-                    res.status(400).json({message: 'Il existe déjà un compte avec ce numéro de téléphone.'})
+                    res.status(400).json({probleme: 'Il existe déjà un compte avec ce numéro de téléphone.'})
                   }
                   else{
-                    console.log('Erreur requete');
                     res.status(500).json({ error: "Erreur de serveur" });
                   }
             }
             else{
-              console.log('requete executer')
-              res.status(201).json({message: 'Utilisateur a été crée avec succès.'})
+              res.status(201).json({success: 'Votre compte a été crée avec succès. Veuillez-vous connecter!'})
             }
         })
         

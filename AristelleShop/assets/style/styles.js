@@ -38,8 +38,9 @@ const styles = StyleSheet.create({
       borderRadius: 10,
       height: '10%',
       justifyContent: 'center',
-      width: '80%',
-      marginLeft: '10%',
+      width: '50%',
+      height: '8%',
+      marginLeft: '25%',
       marginTop: 30,
       flexDirection: 'row'
     
@@ -61,7 +62,6 @@ const styles = StyleSheet.create({
       resizeMode: 'cover',
     },
     text: {
-      fontFamily: 'Arial',
       fontSize: 25,
       marginTop: '50%',
       position: 'relative',
@@ -72,7 +72,23 @@ const styles = StyleSheet.create({
       height: '1%',
       marginTop: '15%', 
       marginLeft: '20%', 
-    }
+    },
+    header:{
+      marginTop: 0,
+      justifyContent: 'space-between',
+      flexDirection: 'row',
+      alignItems: 'center',
+      padding: '5%',
+      paddingTop: '1%',
+      marginTop: '5%'
+      /*
+      backgroundColor: '#FFFFFF',
+      borderBottomLeftRadius: 10,
+      borderBottomRightRadius: 10,
+      borderTopLeftRadius: 10,
+      borderTopRightRadius: 10,
+    */
+   }
   })
 
 export default styles;

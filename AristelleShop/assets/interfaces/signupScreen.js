@@ -1,16 +1,14 @@
-import { View, Text, ScrollView, TextInput, TouchableOpacity} from 'react-native'
-import React, { useState } from 'react'
-import { SafeAreaView } from 'react-navigation'
+import { View, Text, ScrollView, TextInput, TouchableOpacity, SafeAreaView} from 'react-native';
+import { useState } from 'react';
 import SvgUri from 'react-native-svg-uri'
 import styles  from '../style/signStyle'
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons'
 import styleLogin from '../style/styles'
 import {check_num, check_password, name} from '../utilitaires/check'
 import Modal from 'react-native-modal';
-import { useNavigation } from '@react-navigation/native'
 
 
-const SignupScreen = () => {
+const SignupScreen = ({navigation}) => {
   const [message, setMessage] = useState()
   const [nom, setNom] = useState()
   const [prenom, setPrenom] = useState()
@@ -92,6 +90,7 @@ const SignupScreen = () => {
   const final = () => {
     setConfirmationVisible(false);
     const user = {'nom': nom, 'prenom': prenom, 'adresse': adresse, 'tel': tel, 'password': password}
+   // console.log(user)
     fetch('http://192.168.8.118:3000/api/auth/signup', {
             method: 'POST',
             headers: {
@@ -102,7 +101,13 @@ const SignupScreen = () => {
           .then(response=> response.json())
           .then(data=>{
             //redirection vers navigation
-            setMessage(data.message)
+            if(data?.success){
+              const success = data.success
+              navigation.navigate('Login',{success})
+            }
+            else{
+              setMessage(data.probleme)
+            }
           })
           .catch(error=>{
             console.log(error)
@@ -111,7 +116,7 @@ const SignupScreen = () => {
 
 
   return (
-    <SafeAreaView style = {{flex: 1}}>
+    <SafeAreaView style = {{flex: 1,}}>
 
         <Modal isVisible={confirmationVisible}>
             <View style={styles.modalContainer}>
@@ -122,8 +127,8 @@ const SignupScreen = () => {
                   </TouchableOpacity>
                   <TouchableOpacity style={styles.modalButtonCancel} onPress={() => {              
                             setConfirmationVisible(false);
-                            setStatus('fail');
-                            popIn()}
+                            setMessage(null);
+                            alert('Vous avez refuté la création d\'un compte.')}
                   }>
                     <Text style={styles.modalButtonText}>Non</Text>
                   </TouchableOpacity>
@@ -208,7 +213,7 @@ const SignupScreen = () => {
             </View>
             <TouchableOpacity style = {styleLogin.button} onPress={signup}>
                 <Text style= {{color: 'white', fontWeight: 'bold', marginRight: '5%'}}>s'incrire</Text>
-                <MaterialIcons name='add' size={30} color='white'/>
+                <MaterialIcons name='person-add' size={30} color='white'/>
             </TouchableOpacity>
           </View>
         </ScrollView>
