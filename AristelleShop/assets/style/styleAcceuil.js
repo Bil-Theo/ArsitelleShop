@@ -1,61 +1,85 @@
-import { StyleSheet } from "react-native";
+import { StyleSheet, Dimensions } from "react-native";
+
+
+const {width} = Dimensions.get('window')
+const imageLarg = width * 0.95
 
 const styles = StyleSheet.create({
-
     contenair: {
-        height: '55%',
-        width: '70%',
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+        flexDirection: 'column',
+        paddingBottom: '15%'
+
+    },
+    image: {
+        width: imageLarg,
+        height: imageLarg,
+        borderTopLeftRadius: 60,
+        borderTopRightRadius: 60,
+    },
+    palette: {
+        backgroundColor: 'white',
+        borderBottomLeftRadius: 5,
+        borderBottomRightRadius: 5,
+        width: '71.5%'
+    },
+    info: {
         justifyContent: 'center',
         alignItems: 'center',
         flexDirection: 'column'
     },
-    imageBack: {
-        height: '80%',
-        flex: 1,
-        borderRadius: 10
-    } ,
-
-    info: {
-        backgroundColor: '#000000c0',
-        position: 'absolute',
-        bottom: '1%', 
-        width: '100%',
-        paddingBottom: '1%'
-    }, 
     text: {
-        color: 'white',
+        color: 'black',
         fontSize: 20,
         fontWeight: 'bold',
         textAlign: 'center',
     },
+    textPrice: {
+        color: 'black',
+        fontSize: 15,
+        textAlign: 'center',
+    },
     textpromo: {
         color: 'red',
-        fontSize: 20,
-        fontWeight: 'bold',
+        fontSize: 15,
         textAlign: 'center',
         textDecorationLine: 'line-through',
         textDecorationColor: 'red',
     },
     action: {
-        height: '20%',
-        backgroundColor: 'white',
-        borderRadius: 10,
+        justifyContent: 'center',
+        alignItems: 'center',
         flexDirection: 'row',
+        paddingBottom: '5%',
+        marginTop: '5%',
+    },
+    buttonText: {
+        color: 'white',
+        fontWeight: 'bold',
     },
     details: {
-        height: '10%',
-        width: '20%',
-        justifyContent: 'center',
-        alignItems: 'center',
-        flexDirection: 'row'
-    },
-    achat: {
-        height: '10%',
-        width: '20%',
         justifyContent: 'center',
         alignItems: 'center',
         flexDirection: 'row',
-        color: ''
+        backgroundColor: '#10dfee',
+        borderRadius: 5,
+        marginRight: '10%',
+        paddingLeft: '3%',
+        marginLeft: '3%',
+        flex: 1,
+    },
+    achat: {
+        height: '100%',
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+        flexDirection: 'row',
+        backgroundColor: '#30d165',
+        alignItems: 'center',
+        borderRadius: 5,
+        marginRight: '3%',
     },
 })
 

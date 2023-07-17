@@ -1,13 +1,15 @@
-import { View, Text, ScrollView } from 'react-native'
+import { View, Text, ScrollView, FlatList } from 'react-native'
 import React from 'react'
 import { SafeAreaView } from 'react-navigation'
+import Item from './Item'
+import { products } from '../../test/data1'
 
 const Notif = () => {
   return (
-    <SafeAreaView style={{flex: 1}}>
-        <ScrollView contentContainerStyle={{flexGrow: 1}}>
-               <Text>Bonjour</Text>
-        </ScrollView>
+    <SafeAreaView>
+        <View style={{height: '100%',}}>
+            <Text>Notifs</Text>
+        </View>   
     </SafeAreaView>
   )
 }

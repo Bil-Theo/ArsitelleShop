@@ -40,6 +40,7 @@ export default function LoginScreen({ navigation, route }) {
           .then(data=>{
             //redirection vers navigation
             console.log(data)
+            navigation.navigate('Fonctionnement', {data})
           })
           .catch(error=>{
             setMessage('numero ou mot de passe incorrect!')
@@ -59,7 +60,7 @@ export default function LoginScreen({ navigation, route }) {
   
 
   const inscription = ()=>{
-    navigation.navigate('EcranAcceuil')
+    navigation.navigate('Fonctionnement')
   }
  
   const [showPassword, setShowPassword] = useState(true);

@@ -4,6 +4,7 @@ import {createBottomTabNavigator} from '@react-navigation/bottom-tabs'
 import Acceuil from './assets/interfaces/Acceuil'
 import Notif from './assets/interfaces/notif'
 import Entete from './assets/interfaces/entete'
+import Panier from './assets/interfaces/panier'
 import { Ionicons } from '@expo/vector-icons';
 
 const TabNavigator = () => {
@@ -33,6 +34,16 @@ const TabNavigator = () => {
                                     iconName = focused ? 'ios-notifications' : 'ios-notifications-outline'
                                 }
                             }
+                            else{
+                                taille = 28
+                                if(Platform.OS=='android'){
+                                    iconName = focused ? 'md-cart' : 'md-cart-outline'
+                                }
+                                else{
+                                    iconName = focused ? 'ios-cart' : 'ios-cart-outline'
+                                }
+
+                            }
 
                             return <Ionicons name={iconName} size={taille} color={'black'}/>
                         },
@@ -50,6 +61,11 @@ const TabNavigator = () => {
                     tabBarLabel: '',
             }}
         />
+        <Tab.Screen name = 'Mon Panier' component={Panier} 
+                options={{
+                    tabBarLabel: '',
+                }}/>
+
         <Tab.Screen name = 'Notifications' component={Notif}
             options = {{
                     tabBarLabel: ''

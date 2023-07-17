@@ -1,0 +1,73 @@
+export const products = [
+    {
+      title: 'Produit 1',
+      price: 29.99,
+      pricePromo: 19.99,
+      urlImage: 'https://cdn.def-shop.com/pic260x345/def-pantalon-cargo-brun-936466__1.jpg',
+      promo: true,
+    },
+    {
+      title: 'Produit 2',
+      price: 39.99,
+      pricePromo: 34.99,
+      urlImage: 'https://cdn.def-shop.com/cdn-cgi/image/w=260,q=88,f=auto/https://cdn.def-shop.com/pic500x665/1/alpha-industries-pantalon-cargo-beige-132294.jpg',
+      promo: false,
+    },
+    {
+      title: 'Produit 11',
+      price: 19.99,
+      pricePromo: 14.99,
+      urlImage: 'https://cdn.def-shop.com/pic260x345/1/urban-classics-pantalon-cargo-noir-116455__1.jpg',
+      promo: true,
+    },
+    {
+      title: 'Produit 4',
+      price: 49.99,
+      pricePromo: 39.99,
+      urlImage: 'https://cdn.def-shop.com/pic260x345/def-pantalon-cargo-bleu-967145__1.jpg',
+      promo: true,
+    },
+    {
+      title: 'Produit 5',
+      price: 19.99,
+      pricePromo: 19.99,
+      urlImage: 'https://cdn.def-shop.com/pic260x345/urban-classics-pantalon-cargo-bleu-1016724__1.jpg',
+      promo: false,
+    },
+    {
+      title: 'Produit 6',
+      price: 64.99,
+      pricePromo: 59.99,
+      urlImage: 'https://cdn.def-shop.com/cdn-cgi/image/w=260,q=88,f=auto/https://cdn.def-shop.com/pic500x665/flexfit-casquette-flex-fitted-noir-128648.jpg',
+      promo: true,
+    },
+    {
+      title: 'Produit 7',
+      price: 9.99,
+      pricePromo: 9.99,
+      urlImage: 'https://cdn.def-shop.com/cdn-cgi/image/w=260,q=88,f=auto/https://cdn.def-shop.com/pic500x665/nike-baskets-blanc-956375.jpg',
+      promo: false,
+    },
+    {
+      title: 'Produit 8',
+      price: 24.99,
+      pricePromo: 19.99,
+      urlImage: 'https://cdn.def-shop.com/pic260x345/adidas-originals-sweat--pull-blanc-1041389__1.jpg',
+      promo: true,
+    },
+    {
+      title: 'Produit 9',
+      price: 34.99,
+      pricePromo: 34.99,
+      urlImage: 'https://cdn.def-shop.com/pic260x345/adidas-originals-sweat-capuche-rouge-1041308__1.jpg',
+      promo: false,
+    },
+    {
+      title: 'Produit 10',
+      price: 44.99,
+      pricePromo: 39.99,
+      urlImage: 'https://cdn.def-shop.com/cdn-cgi/image/w=260,q=88,f=auto/https://cdn.def-shop.com/pic500x665/1/urban-classics-t-shirt-noir-33095.jpg',
+      promo: true,
+    },
+  ];
+  

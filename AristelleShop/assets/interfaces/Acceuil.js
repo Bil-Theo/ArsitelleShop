@@ -2,6 +2,8 @@ import { View, Text, RefreshControl, ScrollView, FlatList, ImageBackground, Touc
 import React, {useState, useEffect} from 'react'
 import { SafeAreaView } from 'react-native-safe-area-context';
 import * as Font from 'expo-font';
+import Item from './Item'
+import { products } from '../../test/data1'
 
 
 const Acceuil = () => {
@@ -11,7 +13,7 @@ const Acceuil = () => {
   useEffect(() => {
     async function loadFont() {
       await Font.loadAsync({
-        'fontA':  require('../fonts/Lugrasimo-Regular.ttf'), // Remplacez 'NomDeLaPolice' par le nom réel de votre fichier .ttf (sans l'extension)
+        fontA:  require('../fonts/Lugrasimo-Regular.ttf'), // Remplacez 'NomDeLaPolice' par le nom réel de votre fichier .ttf (sans l'extension)
       });
     }
     loadFont();
@@ -39,15 +41,14 @@ const Acceuil = () => {
       }
       style = {{flex: 1}}  
     >
-        <ScrollView contentContainerStyle={{flexGrow: 1}}>
-          {police&& (
+        <ScrollView style={{height: '100%',}}>
             <View style={{padding: '10%', 
-              paddingTop: '5%', flexDirection: 'column'}}>
+                paddingTop: '5%', flexDirection: 'column', marginBottom: '0%'}}>
               <Text style={{fontWeight: 'bold', fontSize: '25%', fontFamily: 'fontA'}}>La mode</Text>
               <Text style={{color:'gray',fontWeight : 'bold', fontSize: '20%', fontFamily: 'fontA'}}>Vous va si bien</Text>
-          </View>
-          )}
-        </ScrollView>
+           </View>
+          <FlatList  data={products} renderItem={({item})=> <Item item={item}  />} keyExtractor={(item) => item.title}/>
+        </ScrollView> 
 
     </SafeAreaView>
   )

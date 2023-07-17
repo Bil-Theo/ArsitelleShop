@@ -28,10 +28,11 @@ const Screens = () => {
                         borderBottomColor: 'black', 
                     }, 
                     headerTintColor: 'black',
-                    headerBackTitleVisible: false
+                    headerBackTitleVisible: false,
+                    
                 }}
             />
-            <stack.Screen name = 'EcranAcceuil' component = {TabNavigator}
+            <stack.Screen name = 'Fonctionnement' component = {TabNavigator}
                 options={{
                     headerShown: false,
                 }}
