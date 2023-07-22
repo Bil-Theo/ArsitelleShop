@@ -4,6 +4,7 @@ import {createStackNavigator} from '@react-navigation/stack'
 import LoginScreen from './assets/interfaces/loginScreen'
 import SignupScreen from './assets/interfaces/signupScreen'
 import TabNavigator from './TabNavigator'
+import Details from './assets/interfaces/Details'
 
 const stack = createStackNavigator()
 
@@ -37,6 +38,13 @@ const Screens = () => {
                     headerShown: false,
                 }}
             />
+            <stack.Screen name = 'Details' component={Details}
+                options={{
+                    headerTitle: 'Détails de l\'article',
+                    headerBackTitle: 'Acceuil',
+                    headerTintColor: 'black',
+                    headerBackTitleVisible: false,
+                }}/>
         </stack.Navigator>
       )
 }

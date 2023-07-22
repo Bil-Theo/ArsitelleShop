@@ -8,7 +8,6 @@ import styles from '../style/styles';
 import {check_num, check_password, toast} from '../utilitaires/check';
 import SvgUri from 'react-native-svg-uri';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons'
-import {RootSiblingParent} from 'react-native-root-siblings'
 
 
 
@@ -40,7 +39,8 @@ export default function LoginScreen({ navigation, route }) {
           .then(data=>{
             //redirection vers navigation
             console.log(data)
-            navigation.navigate('Fonctionnement', {data})
+            const {user} = data
+            navigation.navigate('Fonctionnement', {user})
           })
           .catch(error=>{
             setMessage('numero ou mot de passe incorrect!')
@@ -70,10 +70,8 @@ export default function LoginScreen({ navigation, route }) {
     };
 
   return (
-    <RootSiblingParent>
-
           <SafeAreaView style={{ flex: 1 }}>
-                  <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
+              <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
                   <View>
                       <SvgUri
                         style = {styles.backImg}
@@ -126,7 +124,5 @@ export default function LoginScreen({ navigation, route }) {
                   </View>
                   </ScrollView>
               </SafeAreaView>
-
-    </RootSiblingParent>
   );
 }

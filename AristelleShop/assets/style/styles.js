@@ -88,7 +88,16 @@ const styles = StyleSheet.create({
       borderTopLeftRadius: 10,
       borderTopRightRadius: 10,
     */
-   }
+   },
+   notificationBubble: {
+    position: 'absolute',
+    top: 0,
+    right: 0,
+    width: 10,
+    height: 10,
+    backgroundColor: 'red',
+    borderRadius: 5,
+  },
   })
 
 export default styles;

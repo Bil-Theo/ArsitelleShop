@@ -6,7 +6,7 @@ import Item from './Item'
 import { products } from '../../test/data1'
 
 
-const Acceuil = () => {
+const Acceuil = ({navigation, route}) => {
   const [refreshing, setRefreshing] = useState(false);
   const [police, setPolice] = useState(false)
 
@@ -47,7 +47,7 @@ const Acceuil = () => {
               <Text style={{fontWeight: 'bold', fontSize: '25%', fontFamily: 'fontA'}}>La mode</Text>
               <Text style={{color:'gray',fontWeight : 'bold', fontSize: '20%', fontFamily: 'fontA'}}>Vous va si bien</Text>
            </View>
-          <FlatList  data={products} renderItem={({item})=> <Item item={item}  />} keyExtractor={(item) => item.title}/>
+          <FlatList  data={products} renderItem={({item})=> <Item item={item} navigation={navigation} />} keyExtractor={(item) => item.title}/>
         </ScrollView> 
 
     </SafeAreaView>

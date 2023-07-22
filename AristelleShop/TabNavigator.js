@@ -1,11 +1,13 @@
 import { View, Text, Platform} from 'react-native'
-import React from 'react'
+import React, { useState } from 'react'
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs'
 import Acceuil from './assets/interfaces/Acceuil'
 import Notif from './assets/interfaces/notif'
 import Entete from './assets/interfaces/entete'
 import Panier from './assets/interfaces/panier'
 import { Ionicons } from '@expo/vector-icons';
+import styles from './assets/style/styles'
+import { panier, getPanier } from './assets/utilitaires/check'
 
 const TabNavigator = () => {
     const Tab = createBottomTabNavigator()
@@ -29,11 +31,13 @@ const TabNavigator = () => {
                                 taille = 28
                                 if(Platform.OS=='android'){
                                     iconName = focused ? 'md-notifications' : 'md-notifications-outline'
+                                    
                                 }
                                 else{
                                     iconName = focused ? 'ios-notifications' : 'ios-notifications-outline'
                                 }
-                            }
+
+                            } 
                             else{
                                 taille = 28
                                 if(Platform.OS=='android'){
@@ -42,6 +46,14 @@ const TabNavigator = () => {
                                 else{
                                     iconName = focused ? 'ios-cart' : 'ios-cart-outline'
                                 }
+                                panier(1)
+                                const res = getPanier()
+                               
+                                
+                                return (<View>
+                                      <Ionicons name={iconName} size={taille} color={'black'}/>
+                                      {res && <View style={styles.notificationBubble} />}
+                                    </View>)
 
                             }
 

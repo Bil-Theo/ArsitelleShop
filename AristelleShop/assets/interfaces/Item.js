@@ -2,16 +2,33 @@ import {Text, View, Image, TouchableOpacity } from 'react-native'
 import React from 'react'
 import styles from '../style/styleAcceuil'
 import { Ionicons } from '@expo/vector-icons'
-import { MaterialIcons } from '@expo/vector-icons'
+import { savePanier,  } from '../utilitaires/check'
+import {toast} from '../utilitaires/check'
 
 
 
-const Item = ({item})=>{
+const Item = ({item, navigation})=>{
 
   const details = ()=>{
-    console.log(item)
-  }
+    //console.log(item)
 
+    navigation.navigate('Details', {item})
+
+  }
+  const ajout = ()=>{
+    savePanier(1, item)
+    /*if(status==0){
+      toast('L\'article a été ajouté dans le panier avec succes.')
+    }
+    else if(status==-1){
+      console.log(-1)
+      alert('\'article existe déjà Ldans votre payer, vous ne pouvez plus ajouter.')
+    }
+    else{
+      console.log(1)
+      alert('Une erreur est survenue lors de l\'ajout de l\'article dans votre panier :,(')
+    }*/
+  }
     return(
       <View style={styles.contenair}>
         <Image source={{uri: item.urlImage}} style={styles.image} resizeMode="contain" />
@@ -32,7 +49,7 @@ const Item = ({item})=>{
                     <Text style={styles.buttonText}>Détails</Text>
                     <Ionicons name = 'information' size={30} color='white'/>
                 </TouchableOpacity>
-                <TouchableOpacity style={styles.achat}>
+                <TouchableOpacity style={styles.achat} onPress={()=> ajout()}>
                     <Text style={styles.buttonText}>AJouter</Text>
                     <Ionicons name = 'cart-outline' size={25} color='white'/>
                 </TouchableOpacity>

@@ -1,7 +1,13 @@
 import Toast  from 'react-native-root-toast';
-import * as Font from 'expo-font';
-
 import { ToastAndroid, Platform } from 'react-native';
+import AsyncStorage from '@react-native-async-storage/async-storage'
+
+
+let val;
+
+export const getPanier = ()=>{
+  return val
+}
 
 export const check_num = (num)=>{
     const expression = /^0[1-9]\d{7}$/
@@ -31,3 +37,61 @@ export const toast = (message)=>{
     }
 }
 
+export const panier = async(key)=>{
+  let valeurEnChaine;
+  try{
+    const stringKey = key.toString();
+    valeurEnChaine = await AsyncStorage.getItem('key_panier' + stringKey);
+  }catch(e){
+    console.log('Erreur surveenu: '+e)
+  }
+  val = valeurEnChaine
+}
+
+export const savePanier = async (key, item) => {
+  try {
+    const stringKey = key.toString();
+    const valeurEnChaine = await AsyncStorage.getItem('key_panier' + stringKey);
+
+    if (valeurEnChaine) {
+      const objetExistant = JSON.parse(valeurEnChaine);
+      if ('item' + item.id in objetExistant) {
+        alert('Article existe déjà dans votre panier.')
+      } else {
+        objetExistant['item' + item.id] = item;
+        const nouvelObjetEnChaine = JSON.stringify(objetExistant);
+        await AsyncStorage.setItem('key_panier' + stringKey, nouvelObjetEnChaine);
+        toast('Article ajouté dans le panier.')
+      }
+    } else {
+      const nouvelObjet = { ['item' + item.id]: item };
+      const nouvelObjetEnChaine = JSON.stringify(nouvelObjet);
+      await AsyncStorage.setItem('key_panier'+stringKey, nouvelObjetEnChaine)
+      toast('Article ajouté dans le panier.')
+    }
+  } catch (error) {
+    alert('Une erreur est survenue :,(')
+  }
+}
+
+export const viderPanier = async(key)=>{
+  try{
+    AsyncStorage.removeItem('key_panier'+key.toString())
+  }catch(e){
+    console.log('Erreur de suppression')
+  }
+}
+
+export const deleteItem =  async(key, itemKey)=>{
+  panier(key)
+  const items = getPanier()
+  let sup =JSON.parse(items)
+  delete sup['item'+itemKey.toString()]
+  const result = Object.keys(bil).length > 0 ? bil : null;
+  try{
+    const chaine = JSON.stringify(result)
+    await AsyncStorage.setItem('key_panier'+KeyboardEvent.toString(), chaine)
+  }catch(e){
+    console.log('Erreur de suppression')
+  }
+}
