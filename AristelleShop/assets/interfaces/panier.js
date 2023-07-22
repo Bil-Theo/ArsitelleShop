@@ -6,9 +6,9 @@ import ItemPanier from './ItemPanier'
 const Panier = () => {
   panier(1)
   const items = [{id: 1}, {id: 2}]
-  //const essa = [getPanier()]
+  const essa = Object.values(getPanier())
 
-  console.log(getPanier())
+  console.log(essa)
 
 
   return (
