@@ -3,11 +3,18 @@ import React from 'react'
 import styles from '../style/Styledetails'
 import styleButton from '../style/styles'
 import { Ionicons } from '@expo/vector-icons'
-import { savePanier } from '../utilitaires/check'
+import { deleteItem, savePanier } from '../utilitaires/check'
 
 
-const Details = ({route}) => {
-    const item = route.params.item
+const Details = ({route, navigation}) => {
+    const   action = route.params.action
+    const   item = route.params.item
+    const user = route.params.user
+    
+    const supprimer = (key, itemKey)=>{
+        deleteItem(key, itemKey)
+        navigation.navigate('Mon Panier')
+    }
     //console.log(item)
   return (
     <SafeAreaView style={{flex: 1}}>
@@ -57,10 +64,14 @@ const Details = ({route}) => {
                         <Text style={styles.description}>{item.description}</Text>
                     </View>
                 </View>
-                <TouchableOpacity style = {[styleButton.button, {backgroundColor: '#30d165', flex: 1}]} onPress={()=> savePanier(1, item)}>
+                {action=='ajout'?(<TouchableOpacity style = {[styleButton.button, {backgroundColor: '#30d165', flex: 1}]} onPress={()=> savePanier(user.user[0].id, item)}>
                       <Text style= {{color: 'white', fontSize: 15,fontWeight: 'bold', marginRight: '5%'}}>Ajouter</Text>
                       <Ionicons name='cart-outline' size={30} color='white'/>
-                </TouchableOpacity>
+                </TouchableOpacity>):
+                (<TouchableOpacity style = {[styleButton.button, {backgroundColor: 'red', flex: 1}]} onPress={()=> supprimer(user.user[0].id, item.id)}>
+                      <Text style= {{color: 'white', fontSize: 15,fontWeight: 'bold', marginRight: '5%'}}>supprimer</Text>
+                      <Ionicons name='trash-outline' size={30} color='white'/>
+                </TouchableOpacity>)}
             </View>
         </ScrollView>
     </SafeAreaView>

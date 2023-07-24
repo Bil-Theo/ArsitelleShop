@@ -46,7 +46,7 @@ const TabNavigator = () => {
                                 else{
                                     iconName = focused ? 'ios-cart' : 'ios-cart-outline'
                                 }
-                                panier(1)
+                                panier(2)
                                 const res = getPanier()
                                
                                 

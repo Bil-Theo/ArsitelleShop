@@ -16,6 +16,8 @@ export default function LoginScreen({ navigation, route }) {
   const [password, setPassword] = useState('')
   const [tel, setTel] = useState('')
   const [message, setMessage] = useState()
+  const userr = {"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjIsImlhdCI6MTY5MDEyMzA5NywiZXhwIjoxNjkwMjA5NDk3fQ.2zxwv-cklHa9E8LKaXUG2zw-a6n1b2VlftQJn-UzGG8", "user": [{"adresse": "Bebd ", "bonus": 0, "etat": 1, "id": 2, "mdps": "$argon2id$v=19$m=65536,t=3,p=4$jiyObIZVBvkVe9/QCZev6w$ejBEFtRHqMknxjMX2XIjhNaTof0oyr0fi+yIYbV/8s4", "nom": "BIL", "prenom": "Théo ", "tel": "+242068838343", "type": "client", "urlprofil": null}]}
+
 
   const changePassword = (inputext)=>{
     setPassword(inputext);
@@ -60,7 +62,7 @@ export default function LoginScreen({ navigation, route }) {
   
 
   const inscription = ()=>{
-    navigation.navigate('Fonctionnement')
+    navigation.navigate('Fonctionnement', {userr})
   }
  
   const [showPassword, setShowPassword] = useState(true);

@@ -9,7 +9,7 @@ import { products } from '../../test/data1'
 const Acceuil = ({navigation, route}) => {
   const [refreshing, setRefreshing] = useState(false);
   const [police, setPolice] = useState(false)
-
+  const user = {"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjIsImlhdCI6MTY5MDEyMzA5NywiZXhwIjoxNjkwMjA5NDk3fQ.2zxwv-cklHa9E8LKaXUG2zw-a6n1b2VlftQJn-UzGG8", "user": [{"adresse": "Bebd ", "bonus": 0, "etat": 1, "id": 2, "mdps": "$argon2id$v=19$m=65536,t=3,p=4$jiyObIZVBvkVe9/QCZev6w$ejBEFtRHqMknxjMX2XIjhNaTof0oyr0fi+yIYbV/8s4", "nom": "BIL", "prenom": "Théo ", "tel": "+242068838343", "type": "client", "urlprofil": null}]}
   useEffect(() => {
     async function loadFont() {
       await Font.loadAsync({
@@ -47,7 +47,7 @@ const Acceuil = ({navigation, route}) => {
               <Text style={{fontWeight: 'bold', fontSize: '25%', fontFamily: 'fontA'}}>La mode</Text>
               <Text style={{color:'gray',fontWeight : 'bold', fontSize: '20%', fontFamily: 'fontA'}}>Vous va si bien</Text>
            </View>
-          <FlatList  data={products} renderItem={({item})=> <Item item={item} navigation={navigation} />} keyExtractor={(item) => item.title}/>
+          <FlatList  data={products} renderItem={({item})=> <Item item={item} navigation={navigation} user={user} />} keyExtractor={(item) => item.title}/>
         </ScrollView> 
 
     </SafeAreaView>

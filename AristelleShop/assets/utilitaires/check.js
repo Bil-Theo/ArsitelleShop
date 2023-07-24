@@ -41,9 +41,10 @@ export const panier = async(key)=>{
   let valeurEnChaine;
   try{
     const stringKey = key.toString();
+    console.log('ici:'+ stringKey)
     valeurEnChaine = await AsyncStorage.getItem('key_panier' + stringKey);
   }catch(e){
-    console.log('Erreur surveenu: '+e)
+    console.log('Erreur survenu: '+e)
   }
   val = valeurEnChaine
 }
@@ -86,12 +87,22 @@ export const deleteItem =  async(key, itemKey)=>{
   panier(key)
   const items = getPanier()
   let sup =JSON.parse(items)
-  delete sup['item'+itemKey.toString()]
-  const result = Object.keys(bil).length > 0 ? bil : null;
-  try{
-    const chaine = JSON.stringify(result)
-    await AsyncStorage.setItem('key_panier'+KeyboardEvent.toString(), chaine)
-  }catch(e){
-    console.log('Erreur de suppression')
+  console.log('Avant')
+  console.log(sup)
+  delete sup['item'+itemKey]
+  console.log('Apres')
+  console.log(sup)
+
+  if(sup=={}){
+    viderPanier(key)
   }
+  else{
+    try{
+      const chaine = JSON.stringify(sup)
+      await AsyncStorage.setItem('key_panier'+key.toString(), chaine)
+    }catch(e){
+      console.log('erreur survenu leors de la suppression.')
+    }
+  }
+  
 }
