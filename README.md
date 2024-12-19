@@ -30,13 +30,7 @@ pour configurer le serveur;
 
 4.3 Executer les commandes:<br>
     
-              npm install -g express
-              npm install -g nodemon
-              npm install -g cors
-              npm install mongoose
-              npm install bcrypt
-              npm install jsonwebtoken
-              nodemon server
+              npm install 
 5-  Executee la commande:<br>
 
               npm install -g expo-cli
